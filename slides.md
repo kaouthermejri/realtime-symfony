@@ -5,6 +5,13 @@ layout: true
 
 ---
 
+name: green
+
+class: green-template, center, middle
+layout: true
+
+---
+
 name: lblue
 layout: true
 
@@ -388,11 +395,11 @@ channel.bind( 'room-name-changed', function( data ) {} );
 ```js
 // server
 
-var tweet = {
-  text: 'Hello, world!',
-  user_name: '@leggetter'
+var data = [
+  'text' => 'Hello, world!',
+  'user_name' => '@leggetter'
 }
-pusher.trigger( 'chat', 'message', tweet );
+pusher->trigger( 'chat', 'message', data );
 ```
 
 ---
@@ -521,6 +528,42 @@ class: h1-big
 
 template: lblue
 
+# You are just starting out
+    
+* Architecture considerations
+* Go all-in with a "new breed of framework"
+
+---
+
+template: lblue
+
+### Realtime Framework
+    
+* Meteor & hosted offering
+* SailsJS
+* SocketStream
+
+### BaaS (Back-end as a Service)
+
+* Firebase
+* Syncano
+* ...
+
+See: [nobackend.org](http://nobackend.org/) & [j.mp/realtime-tech-guide](http://j.mp/realtime-tech-guide)
+    
+???
+
+* A Framework where you can self-host
+* Or hosted service: a BaaS where your can focus mainly on front-end functionality
+* In both cases: Realtime is baked in
+* In some cases even HTML templating will be baked in
+* and those templates will auto-updated when you update data structures
+* Will "Realtime" simply become an expected piece of functionality in the same way we expect to be able to persist data?
+
+---
+
+template: lblue
+
 # You already have an app
     
 * How to integrate:
@@ -542,6 +585,22 @@ background-image: url(./img/realtime-web-stack-tight-integration-self-hosted.png
 * As project grows complexity increases
 * Updating request/response cycle may impact realtime functionality and vise-versa
 * Likely that the web server is handling load of both standard HTTP and realtime i.e. WebSocket, Server-Sent Events, HTTP fallbacks
+
+---
+
+## PHP Self-Hosted Tightly Coupled options
+
+* [React (PHP)](http://reactphp.org/)
+  * Event-driven, non-blocking I/O with PHP.
+* [Ratchet](http://socketo.me/) (Built on React PHP)
+  * WebSockets, WAMP, PubSub samples. No HTTP Fallback
+* [phpDaemon](http://daemon.io/)
+  * Lots of examples. Most docs in Russian.
+
+???
+
+* React: Event-driven, non-blocking I/O with PHP.
+* Ratchet: WebSockets, WebSocket Application Messaging Protocol, PubSub examples and more. Not HTTP fallback
 
 ---
 
@@ -568,9 +627,9 @@ background-image: url(./img/realtime-web-stack-integration-self-hosted.png)
 
 ---
 
-class: bg-green
+## PHP Self-Hosted Loosely Coupled options
 
-# Self-Hosted Demo
+* Anything!
 
 ---
 
@@ -595,77 +654,139 @@ background-image: url(./img/realtime-web-stack-integration-hosted.png)
 
 ---
 
-class: bg-green
-
-# Hosted Demo
-
----
-
 template: lblue
 class: block
 
 ## Shout-out to Hosted Services
     
-.left[* Dropbox
-* Fanout.io
+.left[* Fanout.io
 * Firebase
 * GDrive Realtime API
 * Hydna
-* Meteor]
-.right[* PubNub
-* **Pusher**
+* PubNub]
+.right[* **Pusher**
 * Realtime.co
 * Simperium
 * Syncano]
 
 ---
 
-template: lblue
+template: dblue
 
-# You are just starting out
-    
-* Architecture considerations
-* Loose coupling
-* Hosted?
-* Go all-in with a "new breed of framework"
+# 6. Self-Hosted v Hosted
+
+## "Build vs. Buy"
 
 ---
 
-template: lblue
+template: green
+class: trans-h bottom
+background-image: url(./img/realtime-web-stack-integration-self-hosted.png)
 
-### Realtime Framework
-    
-* Meteor & hosted offering
-* SailsJS
-* SocketStream
+## Self-Hosted Demo 1: Symfony + Ratchet
 
-### BaaS (Back-end as a Service)
+---
 
-* Firebase
-* Simperium
+## Self-Hosted Demo 1 - Pro & Cons
 
-See: http://nobackend.org/
-    
-???
+.left[
+**Pros**
 
-* A Framework where you can self-host
-* Or hosted service: a BaaS where your can focus mainly on front-end functionality
-* In both cases: Realtime is baked in
-* In some cases even HTML templating will be baked in
-* and those templates will auto-updated when you update data structures
-* Will "Realtime" simply become an expected piece of functionality in the same way we expect to be able to persist data?
+* PHP
+* Simple integration
+* Standards-based
+  * WAMP/Autobahn
+  * JS, Android, iOS & more
+]
+
+.right[
+**Cons**
+
+* No HTTP fallback
+* Low-level abstractions
+* Different programming style
+]
+
+---
+
+template: green
+class: trans-h bottom
+background-image: url(./img/realtime-web-stack-integration-self-hosted.png)
+
+## Self-Hosted Demo 2: Symfony + Faye
+
+---
+
+## Self-Hosted Demo 2 - Pro & Cons
+
+.left[
+**Pros**
+
+* 
+]
+
+.right[
+**Cons**
+
+* Not PHP(?)
+]
+
+---
+
+template: green
+class: bottom trans-h
+background-image: url(./img/realtime-web-stack-integration-hosted.png)
+
+# Hosted Demo: Pusher
+
+---
+
+## Hosted - Pros & Cons
+
+
+.left[
+**Pros**
+
+* Instantly scalable
+* Managed & Dedicated
+* Direct integration into Symfony
+]
+
+.right[
+**Cons**
+
+* 
+]
+
+---
+
+class: bg-cover top trans-h
+background-image: url(img/build-vs-buy.png)
+
+## Build vs. Buy - Costs
+
+<a class="bg-pink" style="position: absolute; top: 2%;" href="https://baremetrics.com/calculator">baremetrics.com/calculator</a>
 
 ---
 
 template: dblue
 
-## 5 Realtime Framework Considerations
+## 6 Realtime Framework Considerations
 
 1. Use an Existing Solution
 2. Use a language you're comfortable with
 3. Do you need native mobile support?
 4. onMessage, PubSub (Evented), RMI or DataSync
 5. Where in development?
+6. Hosted v Self-Hosted (Build vs. Buy)
+
+---
+
+class: bg-pink
+
+# You need Real-Time!
+
+## Make the choice that's right for you!
 
 ---
 
