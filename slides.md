@@ -276,7 +276,7 @@ template: lblue
 ## 4. Application/Solution Functionality
 
 * Information Architecture a.k.a Data
-* Interaction Complexity:
+* Interaction/Communication Complexity:
   * How users interact with your app
   * Client <-> Server interactions
 * Understand the framework functionality you need...
@@ -294,7 +294,7 @@ template: lblue
 
 class: bg-pink
 
-# Framework Functionality, huh?!
+# Functionality, huh?!
 
 --
 
@@ -342,7 +342,7 @@ var client = new FayeClient();
 --
 
 ```
-client.subscribe( 'message', function( message ) {
+client.subscribe( 'messages', function( message ) {
   // Handle Update
 } );
 ```
@@ -352,11 +352,11 @@ client.subscribe( 'message', function( message ) {
 ```js
 // server
 
-var tweet = {
+var message = {
   text: 'Hello, world!',
   user_name: '@leggetter'
 }
-Faye.publish( 'message', tweet );
+Faye.publish( 'messages', message );
 ```
 
 ---
@@ -494,20 +494,21 @@ public class ChatHub : Hub
 ---
 
 template: lblue
-background-image: url(./img/rtw-tech-decision-matrix-white.png)
+class: bg-white
+background-image: url(./img/rtw-tech-decision-matrix-black.png)
 
 ---
 
-template: lblue
-background-image: url(./img/rtw-tech-decision-matrix-apps.png)
+class: bg-white
+background-image: url(./img/rtw-tech-decision-matrix-apps-black.png)
 
 ???
 
   
 ---
 
-template: lblue
-background-image: url(./img/rtw-tech-decision-matrix-solutions.png)
+class: bg-white
+background-image: url(./img/rtw-tech-decision-matrix-solutions-white.png)
 
 ???
   
@@ -536,6 +537,7 @@ template: lblue
 ---
 
 template: lblue
+class: fixed-width-list
 
 ### Realtime Framework
     
@@ -641,34 +643,6 @@ background-image: url(./img/realtime-web-stack-integration-hosted.png)
 
 ???
 
-* Load-balancing connections
-* Maintaining state of connections
-* Synchronising data between nodes
-* Mapping connections to users?
-* Dedicated hosted service will offer :
-* Make things easier and faster  
-* Reduce scaling complexities
-* Natural loose coupling via an API
-* Where is your value?
-* Features v Infrastructure
-
----
-
-template: lblue
-class: block
-
-## Shout-out to Hosted Services
-    
-.left[* Fanout.io
-* Firebase
-* GDrive Realtime API
-* Hydna
-* PubNub]
-.right[* **Pusher**
-* Realtime.co
-* Simperium
-* Syncano]
-
 ---
 
 template: dblue
@@ -681,7 +655,7 @@ template: dblue
 
 template: green
 class: trans-h bottom
-background-image: url(./img/realtime-web-stack-integration-self-hosted.png)
+background-image: url(./img/realtime-web-stack-integration-self-hosted-symfony-ratchet.png)
 
 ## Self-Hosted Demo 1: Symfony + Ratchet
 
@@ -705,13 +679,14 @@ background-image: url(./img/realtime-web-stack-integration-self-hosted.png)
 * No HTTP fallback
 * Low-level abstractions
 * Different programming style
+* You need to scale
 ]
 
 ---
 
 template: green
 class: trans-h bottom
-background-image: url(./img/realtime-web-stack-integration-self-hosted.png)
+background-image: url(./img/realtime-web-stack-integration-self-hosted-symfony-faye.png)
 
 ## Self-Hosted Demo 2: Symfony + Faye
 
@@ -722,20 +697,23 @@ background-image: url(./img/realtime-web-stack-integration-self-hosted.png)
 .left[
 **Pros**
 
-* 
+* In-build Redis/Queue support
+* PubSub
+* Simple integration
 ]
 
 .right[
 **Cons**
 
 * Not PHP(?)
+* You need to scale
 ]
 
 ---
 
 template: green
 class: bottom trans-h
-background-image: url(./img/realtime-web-stack-integration-hosted.png)
+background-image: url(./img/realtime-web-stack-integration-hosted-symfony-pusher.png)
 
 # Hosted Demo: Pusher
 
@@ -748,15 +726,28 @@ background-image: url(./img/realtime-web-stack-integration-hosted.png)
 **Pros**
 
 * Instantly scalable
-* Managed & Dedicated
+* Managed & dedicated
 * Direct integration into Symfony
 ]
 
 .right[
 **Cons**
 
-* 
+* 3rd party reliance
 ]
+
+???
+
+* Load-balancing connections
+* Maintaining state of connections
+* Synchronising data between nodes
+* Mapping connections to users?
+* Dedicated hosted service will offer :
+  * Make things easier and faster  
+  * Reduce scaling complexities
+  * Natural loose coupling via an API
+* Where is your value?
+  * Features v Infrastructure
 
 ---
 
@@ -771,7 +762,8 @@ background-image: url(img/build-vs-buy.png)
 
 template: dblue
 
-## 6 Realtime Framework Considerations
+## How do you choose?
+### 6 Realtime Framework Considerations
 
 1. Use an Existing Solution
 2. Use a language you're comfortable with
