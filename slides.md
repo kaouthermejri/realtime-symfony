@@ -39,14 +39,20 @@ background-image: url(./img/pusher-circles.png)
 
 ---
 
-template: dblue
-class: bg-dark-blue, h1-big
+class: fixed-width-list
 
-# Background
+## What we'll cover
+
+1. Why Real-Time?
+2. What are your options
+  * How do you choose?
+  * Pros & Cons
+3. 3 Example Solutions for Symfony
 
 ---
 
-template: lblue
+template: dblue
+class: bg-dark-blue, h1-big
 
 # Why Realtime?
 
@@ -166,13 +172,20 @@ class: bg-pink, top
 
 ---
 
-class: bg-dark-blue, h1-big
+template: dblue
+class: h1-big
 
 # Real-time Web Apps & Symfony. What are your options?
 
 ---
 
-template: lblue
+class: bg-pink, h1-big
+
+# 6 Factors to Consider
+
+---
+
+template: dblue
 class: h1-big, bg-cover, em-text
 background-image: url(./img/falkirk-wheel.gif)
 
@@ -202,6 +215,7 @@ background-image: url(./img/realtime-web-solutions-updated.png)
 
 ---
 
+template: dblue
 class: bg-cover, trans-h, top
 background-image: url(./img/choose-a-lang.gif)
 
@@ -271,27 +285,6 @@ class: h1-big
 
 ---
 
-template: lblue
-
-## 4. Application/Solution Functionality
-
-* Information Architecture a.k.a Data
-* Interaction/Communication Complexity:
-  * How users interact with your app
-  * Client <-> Server interactions
-* Understand the framework functionality you need...
-
-???
-
-* Going back to the 4 data paradigms:
-* Do you want a few simple streams of data - onMessage
-* Are there multiple streams where the app chops and changes the information it wants - PubSub
-* Do you need bi-directional communication?
-* Are you effectively manipulating a share data structure - sync
-* Or are you trying to provide access to server functionality in a more elegant way - RMI
-
----
-
 class: bg-pink
 
 # Functionality, huh?!
@@ -299,6 +292,10 @@ class: bg-pink
 --
 
 # Communication Patterns
+
+???
+
+Let me clarify this with code.
 
 ---
 
@@ -449,10 +446,7 @@ class: top, code-reveal, long, wide
 // client
 
 $.connection.hub.start(); // async
-```
---
 
-```js
 var chat = $.connection.chatHub;
 ```
 --
@@ -523,23 +517,14 @@ background-image: url(./img/rtw-tech-decision-matrix-solutions-white.png)
 template: dblue
 class: h1-big
 
-# 5. Where are you in Development?
-
----
-
-template: lblue
-
-# You are just starting out
-    
-* Architecture considerations
-* Go all-in with a "new breed of framework"
+# 5. Architecture Considerations
 
 ---
 
 template: lblue
 class: fixed-width-list
 
-### Realtime Framework
+### Just Starting Out?
     
 * Meteor & hosted offering
 * SailsJS
@@ -565,12 +550,11 @@ See: [nobackend.org](http://nobackend.org/) & [j.mp/realtime-tech-guide](http://
 ---
 
 template: lblue
+class: fixed-width-list
 
-# You already have an app
-    
-* How to integrate:
-  * Self-hosted
-  * Hosted
+# You want to build a Symfony app
+or
+# You want to add real-time to an existing app
 
 ---
 
@@ -612,11 +596,9 @@ background-image: url(./img/realtime-web-stack-tight-integration-self-hosted.png
 
 ---
 
-template: lblue
-class: bottom
-background-image: url(./img/realtime-web-stack-integration-self-hosted.png)
-
-### Self Hosted <small>(Loosely Coupled)</small>
+template: green
+class: bottom, trans-h
+background-image: url(./img/realtime-web-stack-integration-self-hosted-symfony-ratchet.png)
 
 ???
   
@@ -627,37 +609,9 @@ background-image: url(./img/realtime-web-stack-integration-self-hosted.png)
 * Realtime for realtime functionality
 * Scale-out realtime server in the same way as web server
 
----
+--
 
-## PHP Self-Hosted Loosely Coupled options
-
-* Anything!
-
----
-
-template: lblue
-class: bottom
-background-image: url(./img/realtime-web-stack-integration-hosted.png)
-
-### Hosted
-
-???
-
----
-
-template: dblue
-
-# 6. Self-Hosted v Hosted
-
-## "Build vs. Buy"
-
----
-
-template: green
-class: trans-h bottom
-background-image: url(./img/realtime-web-stack-integration-self-hosted-symfony-ratchet.png)
-
-## Self-Hosted Demo 1: Symfony + Ratchet
+### Self-Hosted Demo 1: Symfony + Ratchet <small>(Loosely Coupled)
 
 ---
 
@@ -685,10 +639,12 @@ background-image: url(./img/realtime-web-stack-integration-self-hosted-symfony-r
 ---
 
 template: green
-class: trans-h bottom
+class: bottom, trans-h
 background-image: url(./img/realtime-web-stack-integration-self-hosted-symfony-faye.png)
 
-## Self-Hosted Demo 2: Symfony + Faye
+--
+
+### Self-Hosted Demo 2: Symfony + Faye <small>(Loosely Coupled)
 
 ---
 
@@ -697,8 +653,9 @@ background-image: url(./img/realtime-web-stack-integration-self-hosted-symfony-f
 .left[
 **Pros**
 
-* In-build Redis/Queue support
 * PubSub
+* Connection fallback
+* In-build Redis/Queue support
 * Simple integration
 ]
 
@@ -712,10 +669,12 @@ background-image: url(./img/realtime-web-stack-integration-self-hosted-symfony-f
 ---
 
 template: green
-class: bottom trans-h
+class: bottom, trans-h
 background-image: url(./img/realtime-web-stack-integration-hosted-symfony-pusher.png)
 
-# Hosted Demo: Pusher
+--
+
+### Hosted Demo: Pusher
 
 ---
 
@@ -725,6 +684,7 @@ background-image: url(./img/realtime-web-stack-integration-hosted-symfony-pusher
 .left[
 **Pros**
 
+* Simple & powerful
 * Instantly scalable
 * Managed & dedicated
 * Direct integration into Symfony
@@ -751,7 +711,15 @@ background-image: url(./img/realtime-web-stack-integration-hosted-symfony-pusher
 
 ---
 
-class: bg-cover top trans-h
+template: dblue
+
+# 6. Self-Hosted v Hosted
+
+## "Build vs. Buy"
+
+---
+
+class: bg-cover top
 background-image: url(img/build-vs-buy.png)
 
 ## Build vs. Buy - Costs
@@ -769,7 +737,7 @@ template: dblue
 2. Use a language you're comfortable with
 3. Do you need native mobile support?
 4. onMessage, PubSub (Evented), RMI or DataSync
-5. Where in development?
+5. Architectural considerations
 6. Hosted v Self-Hosted (Build vs. Buy)
 
 ---
@@ -782,6 +750,8 @@ class: bg-pink
 
 ---
 
+class: fixed-width-list
+
 # Resources
 
 * [Real-time Tech Guide](http://j.mp/realtime-tech-guide)
@@ -789,6 +759,7 @@ class: bg-pink
 * [Ratchet (PHP)](http://socketo.me/)
 * [Faye (Node/Ruby)](http://faye.jcoglan.com/)
 * [Pusher](https://pusher.com)
+* [github.com/leggetter/realtime-symfony-examples](https://github.com/leggetter/realtime-symfony-examples)
 
 ---
 
