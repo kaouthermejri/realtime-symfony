@@ -148,10 +148,13 @@ background-image: url(./img/atom-pair.gif)
 ---
 
 template: lblue
-class: bg-cover, trans-h, bg-white, bottom
-background-image: url(./img/quizup.png)
+class: bg-cover, trans-h, bg-white
+background-image: url(./img/lunar-landing.png)
 
-# Multiplayer Games
+<h3 style="position: absolute; top: 2%; right: 2%; display: inline-block";>
+  Multiplayer Games /<br />
+  "Do some real-time art!"
+</h3>
 
 ---
 
@@ -198,6 +201,7 @@ background-image: url(./img/falkirk-wheel.gif)
 ---
 
 template: lblue
+class: fixed-width-list
 
 ## Why use an existing solution?
 
@@ -228,12 +232,12 @@ class: pinkie-bold
 
 ## Solutions by language
 
-* **PHP**: ReactPHP, Ratchet
+* **PHP**: ReactPHP, Ratchet, dNode-php, phpDaemon
 * **Java**: Netty, Jetty
 * **JavaScript (Node.JS)**: Faye, Socket.IO (Engine.IO), Primus.io
 * **.NET (C#)**: SignalR, XSockets
 * **Python**: Lots of options built on Tornado
-* **Ruby**: Faye
+* **Ruby**: em-websocket, Faye
 * *Language agnostic*: most hosted services
 
 ---
@@ -259,7 +263,6 @@ template: lblue
 * Only some have mobile libraries
 * How much data are you sending?
 * SSL required on 3/4G networks
-* HTTP fallback required?
 
 ---
 
@@ -272,7 +275,7 @@ template: lblue
 * Hydna
 * PubNub]
 .right[* Pusher
-* Realtime
+* Ratchet (via Autobahn)
 * SignalR
 * Socket.IO]
 
@@ -339,7 +342,7 @@ var client = new FayeClient();
 --
 
 ```
-client.subscribe( 'messages', function( message ) {
+client.subscribe( 'chat', function( message ) {
   // Handle Update
 } );
 ```
@@ -353,7 +356,7 @@ var message = {
   text: 'Hello, world!',
   user_name: '@leggetter'
 }
-Faye.publish( 'messages', message );
+Faye.publish( 'chat', message );
 ```
 
 ---
@@ -438,7 +441,7 @@ myDataRef.on( 'child_removed', function(snapshot) {
 ---
 
 template: lblue
-class: top, code-reveal, long, wide
+class: top, code-reveal, long
 
 ## RMI
 
@@ -522,39 +525,11 @@ class: h1-big
 ---
 
 template: lblue
-class: fixed-width-list
+class: bg-pink fixed-width-list
 
-### Just Starting Out?
-    
-* Meteor & hosted offering
-* SailsJS
-* SocketStream
-
-### BaaS (Back-end as a Service)
-
-* Firebase
-* Syncano
-* ...
-
-See: [nobackend.org](http://nobackend.org/) & [j.mp/realtime-tech-guide](http://j.mp/realtime-tech-guide)
-    
-???
-
-* A Framework where you can self-host
-* Or hosted service: a BaaS where your can focus mainly on front-end functionality
-* In both cases: Realtime is baked in
-* In some cases even HTML templating will be baked in
-* and those templates will auto-updated when you update data structures
-* Will "Realtime" simply become an expected piece of functionality in the same way we expect to be able to persist data?
-
----
-
-template: lblue
-class: fixed-width-list
-
-# You want to build a Symfony app
+## I wanna build a real-time Symfony app
 or
-# You want to add real-time to an existing app
+## I wanna add real-time to an existing Symfony app
 
 ---
 
@@ -563,7 +538,6 @@ class: bottom
 background-image: url(./img/realtime-web-stack-tight-integration-self-hosted.png)
 
 ### Self Hosted <small>(Tightly Coupled)</small>
-
 
 ???
 
@@ -574,18 +548,18 @@ background-image: url(./img/realtime-web-stack-tight-integration-self-hosted.png
 
 ---
 
-## PHP Self-Hosted Tightly Coupled options
+## PHP Self-Hosted options
 
 * [React (PHP)](http://reactphp.org/)
   * Event-driven, non-blocking I/O with PHP.
 * [Ratchet](http://socketo.me/) (Built on React PHP)
   * WebSockets, WAMP, PubSub samples. No HTTP Fallback
+* [dnode-php (RPC/RMI)](https://github.com/bergie/dnode-php)
 * [phpDaemon](http://daemon.io/)
   * Lots of examples. Most docs in Russian.
 
 ???
 
-* React: Event-driven, non-blocking I/O with PHP.
 * Ratchet: WebSockets, WebSocket Application Messaging Protocol, PubSub examples and more. Not HTTP fallback
 
 ---
@@ -719,7 +693,7 @@ template: dblue
 
 ---
 
-class: bg-cover top
+class: bg-cover top trans-h
 background-image: url(img/build-vs-buy.png)
 
 ## Build vs. Buy - Costs
@@ -746,7 +720,11 @@ class: bg-pink
 
 # You need Real-Time!
 
-## Make the choice that's right for you!
+## There are lots of options.
+
+## Make the choice that's right for you.
+
+## I hope this helps!
 
 ---
 
@@ -759,18 +737,18 @@ class: fixed-width-list
 * [Ratchet (PHP)](http://socketo.me/)
 * [Faye (Node/Ruby)](http://faye.jcoglan.com/)
 * [Pusher](https://pusher.com)
+* [LopiPusherBundle](https://github.com/laupiFrpar/LopiPusherBundle)
 * [github.com/leggetter/realtime-symfony-examples](https://github.com/leggetter/realtime-symfony-examples)
 
 ---
 
 class: title
 
-# Real-time Web Apps & Symfony.
-# What are your options?
+## Real-time Web Apps & Symfony.</br>What are your options?
 
-## Questions?
+### Questions?
 
-[leggetter.github.io/realtime-symfony](leggetter.github.io/realtime-symfony)
+[joind.in/14980](https://joind.in/14980) | [leggetter.github.io/realtime-symfony](leggetter.github.io/realtime-symfony)
 
 * <span class="speaker">Phil @leggetter</span>
 * <span class="speaker-job-title">Head of Developer Relations</span>
